@@ -1,7 +1,8 @@
 {
   "name": "bindus",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha",
   "description": "Host and join a server without port-forwarding.",
+  "type": "module",
   "main": "src/index.js",
   "scripts": {
     "test": "jest"
@@ -24,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/Purple-Gem-Studio/bindus/issues"
   },
-  "homepage": "https://github.com/Purple-Gem-Studio/bindus#readme"
+  "homepage": "https://github.com/Purple-Gem-Studio/bindus#readme",
+  "dependencies": {
+    "@atek-cloud/network": "^0.0.5",
+    "random-port": "^0.1.0"
+  }
 }
