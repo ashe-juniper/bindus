@@ -1,0 +1,28 @@
+{
+  "name": "bindus",
+  "version": "0.1.0",
+  "description": "Host and join a server without port-forwarding.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Purple-Gem-Studio/bindus.git"
+  },
+  "keywords": [
+    "p2p",
+    "network",
+    "networking",
+    "server",
+    "host",
+    "join",
+    "direct"
+  ],
+  "author": "Joseph Caruso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Purple-Gem-Studio/bindus/issues"
+  },
+  "homepage": "https://github.com/Purple-Gem-Studio/bindus#readme"
+}
