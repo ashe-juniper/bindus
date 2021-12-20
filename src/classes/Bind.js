@@ -102,7 +102,7 @@ export default class Bind {
         await this._createNode(keyFile)
 
         if (Buffer.isBuffer(remotePublicKey)) {
-            this._startServer()
+            this._startServer(remotePublicKey)
 
             return this
         } else {
@@ -162,13 +162,15 @@ export default class Bind {
         })
     }
 
-    _startServer() {
+    _startServer(remotePublicKey) {
         this._server = net.createServer(async (socket) => {
             this._connection = null
 
             if (Buffer.isBuffer(remotePublicKey)) {
                 try {
                     this._connection = await this._node.connect(remotePublicKey)
+
+                    this._publicKey = remotePublicKey
                 } catch (e) {
                     socket.destroy()
 
