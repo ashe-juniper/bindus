@@ -7,5 +7,6 @@ export default function bindSync(
         keyFile=null) {
     const bindManager = getBindManager()
 
-    return bindManager.bind(port, publicKey, host, keyFile)
+    return bindManager.bindSync(port, publicKey, host, keyFile)
+
 }
