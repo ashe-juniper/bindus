@@ -39,10 +39,10 @@ export default class BindManager {
         }
 
         // Close the bind
-        value.close()
+        bind.close()
 
         // Unregister the bind
-        this.unregisterBind(value.port)
+        this.unregisterBind(bind.port)
     }
 
     closeAll() {

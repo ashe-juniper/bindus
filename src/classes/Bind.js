@@ -39,9 +39,7 @@ export default class Bind {
             if (typeof this._server === 'object') {
                 // Close the server.
                 this._server.close((err) => {
-                    // If `this.onclose` is a function:
                     if (typeof this.onclose === 'function') {
-                        // Call the `onclose()` event handler
                         this.onclose({ error: err })
                     }
                 })
@@ -146,9 +144,9 @@ export default class Bind {
             }
 
             sock.on('close', () => {
-                if (typeof this.onclose === 'function') {
-                    this.onclose({ socket: sock })
-                }
+                // if (typeof this.onclose === 'function') {
+                //     this.onclose({ socket: sock })
+                // }
             })
         })
     }

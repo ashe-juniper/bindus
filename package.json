@@ -1,6 +1,6 @@
 {
   "name": "bindus",
-  "version": "1.0.0-alpha.1.2",
+  "version": "1.0.0-alpha.1.3",
   "description": "Host and join a server without port-forwarding.",
   "type": "module",
   "main": "src/index.js",

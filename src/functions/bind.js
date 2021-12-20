@@ -1,4 +1,3 @@
-import Bind from '../classes/Bind.js'
 import getBindManager from './getBindManager.js'
 
 export default async function bind(

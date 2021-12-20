@@ -1,4 +1,4 @@
-import Bind from '../classes/Bind.js'
+import getBindManager from './getBindManager.js'
 
 export default function bindSync(
         port,
