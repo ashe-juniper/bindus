@@ -1,2 +1,6 @@
+// Public API classes
+export { default as Bind } from './classes/Bind.js'
+
 // Public API functions
-export * from './functions/bind.js'
+export { default as bind } from './functions/bind.js'
+export { default as bindSync } from './functions/bindSync.js'

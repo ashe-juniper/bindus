@@ -1,9 +1,9 @@
 import Bind from '../classes/Bind.js'
 
-export default async function bind(
+export default function bindSync(
         port,
         publicKey=null,
         host='localhost',
         keyFile=null) {
-    return await new Bind().bind(port, publicKey, host, keyFile)
+    return new Bind().bindSync(port, publicKey, host, keyFile)
 }
