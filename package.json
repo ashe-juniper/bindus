@@ -1,6 +1,6 @@
 {
   "name": "bindus",
-  "version": "1.0.0-alpha.2.1",
+  "version": "1.0.0-alpha.3",
   "description": "Host and join a server without port-forwarding.",
   "type": "module",
   "main": "src/index.js",
@@ -29,6 +29,6 @@
   "dependencies": {
     "@atek-cloud/network": "^0.0.5",
     "random-port-promise": "^1.0.1",
-    "tangerine-pie-key-pair": "^1.0.0-alpha.4"
+    "tangerine-pie-key-pair": "^1.0.0-alpha.4.2"
   }
 }

@@ -5,6 +5,10 @@ import pump from 'pump'
 import randomPort from 'random-port-promise'
 import { readKeyFile } from 'tangerine-pie-key-pair'
 
+;(async () => {
+
+})()
+
 export default class Bind {
     constructor() {
 
@@ -17,17 +21,23 @@ export default class Bind {
 
         await this._bind(port, publicKey, host, keyFile)
 
+
+
         return this
     }
 
     bindSync(port, publicKey=null, host='localhost', keyFile=null) {
         // Bind the port for P2P connection
         (async () => {
-            await this.bind(this._port, publicKey, this._host, keyFile)
+            await this.bind(port, publicKey, host, keyFile)
         })()
+
+
 
         // Wait until this is running to return
         while (!this.isRunning()) {}
+
+
 
         return this
     }
@@ -37,20 +47,31 @@ export default class Bind {
         if (this.isRunning()) {
             // If this is running in server mode:
             if (typeof this._server === 'object') {
+
                 // Close the server.
                 this._server.close((err) => {
                     if (typeof this.onclose === 'function') {
                         this.onclose({ error: err })
                     }
                 })
-            }
-            // Close the binding as soon as possible
-            (async () => {
-                await this._node.close()
+            } else if (
+                    typeof this._server === 'undefined' ||
+                    this._server === null) {
+                // Close the binding as soon as possible
+                (async () => {
 
-                // Reset this binding for future use
-                this._reset()
-            })()
+
+
+                    await this._node?.close()
+
+
+
+                    // Reset this binding for future use
+                    this._reset()
+                })()
+            } else {
+                throw `Invalid type '${typeof this._server}' for Bind._server`
+            }
         } else {
             throw `Port ${this._port} is not currently bound.`
         }
@@ -83,11 +104,17 @@ export default class Bind {
     }
 
     async _bind(port, publicKey=null, host='localhost', keyFile=null) {
+
+
         this._reset()
+
+
 
         this._host = typeof host === 'string' ? host : null
         this._port = port ? Number(port) : await randomPort()
         this._publicKey = typeof publicKey === 'string' ? publicKey : null
+
+
 
         let remotePublicKey
 
@@ -99,13 +126,23 @@ export default class Bind {
             }
         }
 
+
+
         await this._createNode(keyFile)
 
+
+
         if (Buffer.isBuffer(remotePublicKey)) {
+
+
             this._startServer(remotePublicKey)
+
+
 
             return this
         } else {
+
+
             await this._node.listen()
 
             this._setEventHandlers()
@@ -116,16 +153,27 @@ export default class Bind {
 
             this._url = `https://${this._publicKey}.atek.app/`
 
+
+
             return this
         }
     }
 
     async _createNode(keyFile=null) {
+
         const keyPair = await readKeyFile(keyFile)
+
+
 
         await AtekNet.setup()
 
+
+
         this._node = new AtekNet.Node(keyPair)
+
+
+
+
     }
 
     _reset() {

@@ -10,5 +10,9 @@ import getBindManager from './getBindManager.js'
 export default async function close(bind) {
     const bindManager = getBindManager()
 
-    return await bindManager.close(bind)
+
+
+    await bindManager.close(bind)
+
+
 }

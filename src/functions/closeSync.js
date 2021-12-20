@@ -7,9 +7,15 @@ import close from './close.js'
  * @returns
  */
 export default function closeSync(bind) {
-    (async () => {
+
+
+    ;(async () => {
         await close(bind)
     })()
 
+
+
     while (bind.isRunning()) {}
+
+
 }

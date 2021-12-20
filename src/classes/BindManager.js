@@ -33,20 +33,28 @@ export default class BindManager {
         return bind
     }
 
-    close(bind) {
+    async close(bind) {
         if (typeof bind === 'number') {
             bind = this._bindTable[bind]
         }
 
-        // Close the bind
-        bind.close()
+
 
         // Unregister the bind
-        this.unregisterBind(bind.port)
+        this.unregisterBind(bind.getPort())
+
+
+
+        // Close the bind
+        await bind.close()
+
+
+
+        bind._reset()
     }
 
     closeAll() {
-        this._bindTable.forEach(this._closeAllForEachBind);
+        this._bindTable.forEach(this._closeAllForEachBind)
     }
 
     registerBind(bind) {
@@ -54,10 +62,14 @@ export default class BindManager {
     }
 
     unregisterBind(port) {
-        delete this._bindTable[port]
+        if (port in this._bindTable) {
+            delete this._bindTable[port]
+        }
+
+
     }
 
     _closeAllForEachBind(value, key, bindTable) {
-
+        this.close(value)
     }
 }

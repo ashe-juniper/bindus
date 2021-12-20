@@ -1,15 +1,15 @@
-import * as Bindus from '../src/index.js';
+import * as Bindus from '../src/index.js'
 
-const port = Number.parseInt(process.argv[2]);
+const port = Number.parseInt(process.argv[2])
 
-console.log('Hosting the server.');
+console.log('Hosting the server.')
 
-(async () => {
-    const bind = await Bindus.bind(port);
+;(async () => {
+    const bind = await Bindus.bind(port)
 
-    console.log('Public key:', bind.getPublicKey());
+    console.log('Public key:', bind.getPublicKey())
 
     process.on('beforeExit', (exitCode) => {
-        bind.closeSync()
+        await bind.close()
     })
-})();
+})()
