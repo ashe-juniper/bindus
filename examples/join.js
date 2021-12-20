@@ -11,4 +11,8 @@ console.log('Joining the server.');
     const bind = await Bindus.bind(port, publicKey);
 
     console.log('Remote public key:', bind.getPublicKey());
+
+    process.on('beforeExit', (exitCode) => {
+        bind.closeSync()
+    })
 })();

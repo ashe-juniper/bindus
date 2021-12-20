@@ -8,4 +8,8 @@ console.log('Hosting the server.');
     const bind = await Bindus.bind(port);
 
     console.log('Public key:', bind.getPublicKey());
+
+    process.on('beforeExit', (exitCode) => {
+        bind.closeSync()
+    })
 })();
