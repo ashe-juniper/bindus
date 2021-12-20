@@ -1,24 +1,22 @@
-import * as Bindus from '../src/index.js'
+import * as Bindus from '../src/index.js';
 
-const port = Number.parseInt(process.argv[2])
-const publicKey = process.argv[3]
+const port = Number.parseInt(process.argv[2]);
+const publicKey = process.argv[3];
 
-console.log('Local port:', port)
+console.log('Local port:', port);
 
 console.log('Joining the server.');
 
-(async () => {
-    const bind = await Bindus.bind(port, publicKey)
+const bind = Bindus.bindSync(port, publicKey);
 
-    console.log('Remote public key:', bind.getPublicKey())
+console.log('Remote public key:', bind.getPublicKey());
 
-    process.on('beforeExit', (exitCode) => {
-        bind.closeSync()
-    })
+process.on('beforeExit', (exitCode) => {
+    bind.closeSync();
+});
 
-    bind.onclose = () => console.log("Goodbye, bindus!")
+bind.onclose = () => console.log("Goodbye, bindus!");
 
-    Bindus.closeSync(bind)
+Bindus.closeSync(bind);
 
-    console.log("The bind has been closed.")
-})()
+console.log("The bind has been closed.");
